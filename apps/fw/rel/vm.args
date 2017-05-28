@@ -1,0 +1,7 @@
+## Start the Elixir shell
+-name nerves-gateway357@192.168.1.104
+-setcookie nerves-gateway
+
+-noshell
+-user Elixir.IEx.CLI
+-extra --no-halt
