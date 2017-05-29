@@ -59,19 +59,19 @@
 	                <li>
 	                    <a href="#">
 	                        <i class="material-icons">content_paste</i>
-	                        <p>Table List</p>
+	                        <p>List</p>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="#">
 	                        <i class="material-icons">library_books</i>
-	                        <p>Typography</p>
+	                        <p>Groups</p>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="#">
 	                        <i class="material-icons">bubble_chart</i>
-	                        <p>Icons</p>
+	                        <p>Nodes</p>
 	                    </a>
 	                </li>
 	                <li>
