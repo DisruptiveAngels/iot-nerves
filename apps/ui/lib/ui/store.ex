@@ -4,6 +4,7 @@ defmodule Ui.Store do
 
   @defaults %{
     data: %{},
+    threshold: 50
   }
 
   def start_link do

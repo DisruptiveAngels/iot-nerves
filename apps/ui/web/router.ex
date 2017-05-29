@@ -32,6 +32,8 @@ defmodule Ui.Router do
 
       get "/sensor/:id/need_on", SensorController, :need_on
       get "/get_data", SensorController, :get_data
+
+      get "/config/threshold/:value", SensorController, :config_threshold
     end
   end
 

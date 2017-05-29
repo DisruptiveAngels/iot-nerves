@@ -116,6 +116,7 @@ defmodule Ui.Api.V1.SensorController do
 
   def need_on(conn, %{"id" => id}) do
     data = Ui.Store.get(:data)
+    threshold = Ui.Store.get(:threshold)
 
     # Need to be our temp sensor ID.
     sensor = data[id]
@@ -123,7 +124,7 @@ defmodule Ui.Api.V1.SensorController do
     response = %{:turn_on => 0}
 
     if !is_nil(sensor) do
-      if String.to_integer(sensor.value) > 50 do
+      if String.to_integer(sensor.value) > threshold do
         response = %{:turn_on => 1}
       end
     end
@@ -141,5 +142,10 @@ defmodule Ui.Api.V1.SensorController do
       data: data
     }
     json conn, response
+  end
+
+  def config_threshold(conn, %{"value" => value}) do
+    Ui.Store.put(:threshold, String.to_integer(value))
+    json conn, %{}
   end
 end
