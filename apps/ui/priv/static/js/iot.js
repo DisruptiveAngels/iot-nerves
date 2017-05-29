@@ -68,4 +68,4 @@ var iot_reload = function(){
     });
 }
 
-$(document).ready(setInterval(iot_reload, 7000));
+$(document).ready(setInterval(iot_reload, 1000));
