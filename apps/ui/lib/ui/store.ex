@@ -3,7 +3,7 @@ defmodule Ui.Store do
   require Logger
 
   @defaults %{
-    foo: "baa"
+    data: %{},
   }
 
   def start_link do

@@ -10,43 +10,135 @@ defmodule Ui.Api.V1.SensorController do
   # end
 
   def temp_values(conn, %{"id" => id, "value" => value}) do
-    sensor = %{
-      id: id,
-      type: "temperature",
-      val: value
-    }
+    data = Ui.Store.get(:data)
 
-    temperature = [
-      id: %{id: "567", type: "temperature", value: value},
-      mary: %{id: "Mary", type: "temperature", value: value}
-    ]
+    sensor = data[id]
 
-    Ui.Store.put(:temperature, temperature)
+    if is_nil(sensor) do
+      sensor = %{:id => id, :type => "temperature", :value => value}
+      data = Map.put(data, id, sensor)
+    else
+      sensor = %{sensor | :value => value}
+      data = %{data | id => sensor}
+    end
 
-    data = Ui.Store.get(:temperature)
+    Ui.Store.put(:data, data)
     response = %{
-      data: data[:id].value
+      data: sensor
     }
 
     json conn, response
   end
 
   def gas_values(conn, %{"id" => id, "value" => value}) do
-    json conn, %{ok: "200", id: id, value: value}
+    data = Ui.Store.get(:data)
+
+    sensor = data[id]
+
+    if is_nil(sensor) do
+      sensor = %{:id => id, :type => "gas", :value => value}
+      data = Map.put(data, id, sensor)
+    else
+      sensor = %{sensor | :value => value}
+      data = %{data | id => sensor}
+    end
+
+    Ui.Store.put(:data, data)
+    response = %{
+      data: sensor
+    }
+
+    json conn, response
   end
 
   def switch_values(conn, %{"id" => id, "value" => value}) do
-    json conn, %{ok: "200", id: id, value: value}
+    data = Ui.Store.get(:data)
+
+    sensor = data[id]
+
+    if is_nil(sensor) do
+      sensor = %{:id => id, :type => "switch", :value => value}
+      data = Map.put(data, id, sensor)
+    else
+      sensor = %{sensor | :value => value}
+      data = %{data | id => sensor}
+    end
+
+    Ui.Store.put(:data, data)
+    response = %{
+      data: sensor
+    }
+
+    json conn, response
   end
 
   def flow_values(conn, %{"id" => id, "value" => value}) do
-    json conn, %{ok: "200", id: id, value: value}
+    data = Ui.Store.get(:data)
+
+    sensor = data[id]
+
+    if is_nil(sensor) do
+      sensor = %{:id => id, :type => "flow", :value => value}
+      data = Map.put(data, id, sensor)
+    else
+      sensor = %{sensor | :value => value}
+      data = %{data | id => sensor}
+    end
+
+    Ui.Store.put(:data, data)
+    response = %{
+      data: sensor
+    }
+
+    json conn, response
+  end
+
+  def hits_values(conn, %{"id" => id, "value" => value}) do
+    data = Ui.Store.get(:data)
+
+    sensor = data[id]
+
+    if is_nil(sensor) do
+      sensor = %{:id => id, :type => "hits", :value => value}
+      data = Map.put(data, id, sensor)
+    else
+      sensor = %{sensor | :value => value}
+      data = %{data | id => sensor}
+    end
+
+    Ui.Store.put(:data, data)
+    response = %{
+      data: sensor
+    }
+
+    json conn, response
+  end
+
+  def need_on(conn, %{"id" => id}) do
+    data = Ui.Store.get(:data)
+
+    # Need to be our temp sensor ID.
+    sensor = data[id]
+
+    response = %{:turn_on => 0}
+
+    if !is_nil(sensor) do
+      if String.to_integer(sensor.value) > 50 do
+        response = %{:turn_on => 1}
+      end
+    end
+
+    # response = %{
+    #   data: sensor
+    # }
+
+    json conn, response
   end
 
   def get_data(conn, %{}) do
-    data = Ui.Store.get(:temperature)
+    data = Ui.Store.get(:data)
     response = %{
-      data: data[:id].value
+      data: data
     }
     json conn, response
   end

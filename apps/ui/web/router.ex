@@ -28,7 +28,9 @@ defmodule Ui.Router do
       post "/sensor/:id/gas/:value", SensorController, :gas_values
       post "/sensor/:id/switch/:value", SensorController, :switch_values
       post "/sensor/:id/flow/:value", SensorController, :flow_values
+      post "/sensor/:id/hits/:value", SensorController, :hits_values
 
+      get "/sensor/:id/need_on", SensorController, :need_on
       get "/get_data", SensorController, :get_data
     end
   end
