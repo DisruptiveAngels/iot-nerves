@@ -69,3 +69,34 @@ var iot_reload = function(){
 }
 
 $(document).ready(setInterval(iot_reload, 1000));
+
+var handlesSlider = document.getElementById('sliderRegular');
+
+noUiSlider.create(handlesSlider, {
+	start: 50,
+	range: {
+		'min': [  10 ],
+		'max': [ 100 ]
+	},
+  step: 10,
+  connect: true,
+});
+
+handlesSlider.noUiSlider.on('update', function(){
+  var value = handlesSlider.noUiSlider.get();
+  value = parseInt(value);
+	$('#threshold_value').html(value);
+
+  $.ajax({
+      type: "GET",
+      url: "/api/v1/config/threshold/" + value,
+      dataType: 'JSON',
+      success: function(data){
+        console.log(data);
+      },
+      error: function(data){
+        console.log('Error:');
+        console.log(data);
+      }
+    });
+});

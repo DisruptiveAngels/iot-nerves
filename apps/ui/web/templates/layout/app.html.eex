@@ -210,6 +210,8 @@
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="<%= static_path(@conn, "/js/demo.js") %>"></script>
 
+  <script src="<%= static_path(@conn, "/js/nouislider.min.js") %>"></script>
+
   <script src="<%= static_path(@conn, "/js/iot.js") %>"></script>
 
 	<script type="text/javascript">

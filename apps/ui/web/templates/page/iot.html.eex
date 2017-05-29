@@ -1,4 +1,14 @@
 <div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-2 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-content" style="padding: 10px; text-align: left;">
+					<h4>Temperature Threshold/ <span id="threshold_value">50</span></h4>
+					<div id="sliderRegular" class="slider slider-info"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="iot_sensors" class="row">
 		<div class="col-lg-3 col-md-6 col-sm-6">
 			<div class="card card-stats">
@@ -66,7 +76,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-4">
 			<div class="card">
