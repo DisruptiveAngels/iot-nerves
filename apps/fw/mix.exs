@@ -34,11 +34,11 @@ defmodule Fw.Mixfile do
   # applications which could cause the host to fail. Because of this, we only
   # invoke Fw.start/2 when running on a target.
   def application("host") do
-    [extra_applications: [:logger]]
+    [extra_applications: [:logger, :runtime_tools]]
   end
   def application(_target) do
     [mod: {Fw, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :runtime_tools]]
   end
 
   # Dependencies can be Hex packages:
@@ -60,6 +60,7 @@ defmodule Fw.Mixfile do
   def deps(target) do
     [{:nerves_runtime, "~> 0.1.0"},
      {:"nerves_system_#{target}", "~> 0.12.0", runtime: false},
+     {:nerves_uart, "~> 0.1"},
      {:nerves_networking, "~> 0.6.0"},
      {:nerves_firmware_http, "~> 0.4"},
      {:ui, in_umbrella: true}]

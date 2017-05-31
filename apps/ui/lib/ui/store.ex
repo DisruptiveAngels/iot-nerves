@@ -4,7 +4,8 @@ defmodule Ui.Store do
 
   @defaults %{
     data: %{},
-    threshold: 50
+    threshold: 50,
+    uart_buffer: 0
   }
 
   def start_link do
