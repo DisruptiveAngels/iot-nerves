@@ -114,6 +114,27 @@ defmodule Ui.Api.V1.SensorController do
     json conn, response
   end
 
+  def distance_values(conn, %{"id" => id, "value" => value}) do
+    data = Ui.Store.get(:data)
+
+    sensor = data[id]
+
+    if is_nil(sensor) do
+      sensor = %{:id => id, :type => "distance", :value => value}
+      data = Map.put(data, id, sensor)
+    else
+      sensor = %{sensor | :value => value}
+      data = %{data | id => sensor}
+    end
+
+    Ui.Store.put(:data, data)
+    response = %{
+      data: sensor
+    }
+
+    json conn, response
+  end
+
   def need_on(conn, %{"id" => id}) do
     data = Ui.Store.get(:data)
     threshold = Ui.Store.get(:threshold)

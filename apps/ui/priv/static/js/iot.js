@@ -36,6 +36,10 @@ var iot_reload = function(){
             color = 'orange', icon = 'looks_3',
               sub_icon = 'updated', metric = '';
           }
+          else if (row.type == "distance") {
+            color = 'blue', icon = 'timelapse',
+              sub_icon = 'updated', metric = '';
+          }
           else{
             color = 'red', icon = 'toys',
               sub_icon = 'updated', metric = 'C';
